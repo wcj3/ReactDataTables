@@ -1,0 +1,39 @@
+{
+  "name": "react-data-tables",
+  "description": "Inspired by https://uxdesign.cc/design-better-data-tables-4ecc99d23356",
+  "version": "0.0.312",
+  "scripts": {
+    "start": "BABEL_ENV=development react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "dev": "webpack-dev-server --config ./webpack.config.babel.js"
+  },
+  "dependencies": {
+    "classnames": "2.2.5",
+    "prettier-eslint-cli": "^4.1.1",
+    "react": "15.5.3",
+    "react-dom": "15.5.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "css-loader": "^0.28.4",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-flowtype": "^2.35.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "flow-bin": "^0.51.1",
+    "react-hot-loader": "next",
+    "react-scripts": "^1.0.10",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.4.1",
+    "webpack-dev-server": "^2.6.1"
+  }
+}

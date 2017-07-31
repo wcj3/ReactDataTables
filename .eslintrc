@@ -1,0 +1,22 @@
+{
+"extends": ["airbnb", "plugin:flowtype/recommended"],
+"rules": {
+    "no-plusplus": "off",
+    "brace-style": "warn",
+    "no-console": "warn",
+    "no-prototype-builtins": "warn",
+    "arrow-body-style": ["warn", "as-needed"],
+    "react/forbid-prop-types": "warn",
+    "no-else-return": "warn",
+    "no-useless-constructor":  "off"
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype"
+  ],
+"env": {
+    "browser": true,
+    "node": true,
+    "jasmine": true
+  }
+}

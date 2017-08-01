@@ -1,101 +1,112 @@
-:root {
-  --color: rgba(127, 140, 141, .5);
-  --cellHeight: 32px;
+.ReactDataTable {
+  position: relative;
+  &-wrapper {
+    overflow: scroll;
+    position: relative;
+    margin-bottom: 50px;
+    border: 1px solid rgb(218, 218, 218);
+  }
+  &-density {
+    display: flex;
+    justify-content: flex-end;
+    height: 25px;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: white;
+    color: rgb(130, 130, 130);
+    border: 1px solid rgb(218, 218, 218);
+    border-bottom: transparent;
+  }
+  &-row {
+    display: grid;
+    background: inherit;
+  }
+  &-container {
+    width: 95vw;
+  }
 }
 
-.ReactDataTable {
-  margin-bottom: 40px;
-  position: relative;
+:global .side-scroller>.header>span:first-of-type, :global .side-scroller>.body>div>span:first-of-type {
+  background: inherit;
+  position: sticky;
+  left: 0px;
+  width: 100px;
+  z-index: 2;
+  box-shadow: 2px 0px 1px 0px rgb(226, 226, 226);
+  transition: z-index box-shadow .3s;
+}
+
+.active {
+  color: black;
 }
 
 button {
- position: relative;
- border: none;
- background: none;
- font-size: inherit;
- color: inherit;
- display: block;
- padding: 0;
- &:disabled:hover {
-   cursor: not-allowed;
- }
- &:focus {
-   outline: none;
- }
-}
-
-.ReactDataTable-wrapper {
-  width: 95vw;
-  overflow: scroll;
   position: relative;
-  margin-bottom: 50px;
-  border: 1px solid rgb(218, 218, 218);
+  border: none;
+  background: none;
+  font-size: inherit;
+  color: inherit;
+  display: block;
+  padding: 0;
+  &:disabled:hover {
+    cursor: not-allowed;
+  }
+  &:focus {
+    outline: none;
+  }
 }
 
-.ReactDataTable-density {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 15px;
-  height: 25px;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: white;
-  color: rgb(130, 130, 130);
-}
-
-.ReactDataTable-row{
-  display: grid;
-}
-
-.grid-helper {
+@define-extend grid-helper {
   display: grid;
   grid-template-rows: auto;
   position: relative;
 }
 
-.header {
+:global .header {
+  @extend grid-helper;
   background: #3498db;
-  z-index: 2;
-  box-shadow: 0 0 0 0 var(--color);
+  z-index: 3;
+  box-shadow: 0 0 0 0 rgb(221, 221, 221);
   transition: all .1s;
   position: sticky;
-  top: 25px;
+  top: 0;
 }
 
-.header .cell {
-  margin: 5px 0px;
-}
-
-.body {
+:global .body {
+  @extend grid-helper;
   grid-row-gap: 1px;
   background: white;
 }
 
-.body .cell, .header .cell {
+:global .cell{
+  padding: 5px;
+}
+
+:global .body .cell, :global .header .cell {
   display: flex;
   justify-self: start;
   align-self: center;
-  height: var(--cellHeight);
+  height: 32px;
   align-items: center;
   padding: 0px 8px;
   white-space: pre;
 }
 
-.body .cell {
+:global .body .cell {
   max-width: 140px;
   text-align: left;
   position: relative;
 }
 
-.body .data {
+:global .body .data {
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
 .cell-line::after {
   content: '';
-  border-bottom: 1px solid var(--color);
+  border-bottom: 1px solid rgb(221, 221, 221);
   position: absolute;
   width: 100%;
   left: 0;
@@ -107,9 +118,9 @@ button {
   background: lightgray;
 }
 
-.risen {
-  z-index: 2;
-  box-shadow: 0px 2px 1px 1px var(--color);
+:global .risen {
+  z-index: 3;
+  box-shadow: 0px 2px 1px 1px rgb(213, 213, 213);
 }
 
 .fixed {
@@ -119,13 +130,3 @@ button {
 
 
 /*Left must match margin position*/
-
-.side-scroller>.header>span:first-of-type, .side-scroller>.body>span:nth-of-type(6n+1) {
-  background: inherit;
-  position: sticky;
-  left: 0px;
-  width: 100px;
-  z-index: 1;
-  box-shadow: 2px 0px 1px 0px var(--color);
-  transition: z-index box-shadow .3s;
-}

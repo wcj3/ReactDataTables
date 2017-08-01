@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'eval',
@@ -12,13 +13,13 @@ module.exports = {
     'index.js',
   ],
   output: {
-    path: '/',
+    path: '/public',
     filename: 'bundle.js',
     publicPath: '/',
   },
   devServer: {
     hot: true,
-    contentBase: './',
+    contentBase: './public',
     compress: true,
     port: 9999,
   },
@@ -30,17 +31,25 @@ module.exports = {
         use: 'babel-loader',
       },
       {
-       test: /\.css$/,
-       use: [
-         { loader: 'style-loader' },
-         {
-           loader: 'css-loader',
-           options: {
-             modules: true
-           }
-         }
-       ]
-     }
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+          },
+        ],
+      },
     ],
   },
   resolve: {

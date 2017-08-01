@@ -1,7 +1,7 @@
 // minSize  could be changed to small medium large
 const config1 = {
   maxHeight: 200,
-  rowStyle: 'line',
+  rowStyle: 'zebra',
   minSize: 'small',
   headers: ['Athlete', 'Sport', 'Team'],
   data: [

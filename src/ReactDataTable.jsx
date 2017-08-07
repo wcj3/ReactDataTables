@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import CSSModules from 'react-css-modules';
 import styles from './styles.css';
 
+console.log(styles);
+
 class ReactDataTable extends React.PureComponent {
   constructor() {
     super();
@@ -86,12 +88,16 @@ class ReactDataTable extends React.PureComponent {
         if ((index + 1) / this.props.config.headers.length >= 1) {
           // add data to row before resetting below
           bodyCells = this.addToRow(bodyCells, subItem);
+          // define row styles
+          const rowClasses = classNames({
+            'ReactDataTable-row--zebra': this.props.config.rowStyle === 'zebra',
+            'ReactDataTable-row': this.props.config.rowStyle !== 'zebra',
+          });
           body.push(
             <div
-              styleName="ReactDataTable-row"
+              styleName={rowClasses}
               style={{
-                'borderBottom': this.props.config.rowStyle === 'line' && '1px solid black',
-                background: this.props.config.rowStyle === 'zebra' && 'lightgrey',
+                borderBottom: this.props.config.rowStyle === 'line' && '1px solid black',
                 gridTemplateColumns: cols,
               }}
             >

@@ -21,6 +21,13 @@
   &-row {
     display: grid;
     background: inherit;
+    &--zebra {
+      display: grid;
+
+    }
+    &--zebra:nth-of-type(2n){
+      background: rgb(130, 130, 130);
+    }
   }
   &-container {
     width: 95vw;

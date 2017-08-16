@@ -1,0 +1,5 @@
+// @flow
+const SCROLL_EMITTED = 'SCROLL_EMITTED';
+const HEADER_REF = 'HEADER_REF';
+
+export { SCROLL_EMITTED, HEADER_REF };

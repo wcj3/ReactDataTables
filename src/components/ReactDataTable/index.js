@@ -1,151 +1,22 @@
-// @flow
 import React from 'react';
-import classNames from 'classnames';
+import { Provider } from 'react-redux';
+import ReactDataTableContainer from './ReactDataTableContainer';
 
-import ReactDataTableHeader from './components/ReactDataTableHeader';
-import ReactDataTableBody from './components/ReactDataTableBody';
-import styles from './styles.css';
+import configureStore from './configureStore';
 
 class ReactDataTable extends React.PureComponent {
   constructor() {
     super();
-    this.state = {
-      densityLevel: 1,
-      rowHeight: 20,
-      cols: '',
-    };
+    this.store = configureStore();
   }
-
-  state: {
-    densityLevel: number,
-    rowHeight: number,
-    cols: string,
-  };
-
-  componentWillMount() {
-    this.setState({
-      cols: '1fr '.repeat(this.props.config.headers.length),
-    });
-  }
-
-  // increment densityLevel
-  setDensity(level: number, rowHeight: number) {
-    this.setState({
-      densityLevel: level,
-      rowHeight,
-    });
-  }
-
-  props: {
-    config: {
-      maxHeight: number,
-      rowStyle: string,
-      minSize: string,
-      headers: Array<string>,
-      data: Array<Array<string>>,
-    },
-    ui: {
-      headerRef: HTMLElement,
-    },
-    getElementRef: Function,
-  };
 
   render() {
-    let scrollTracker = 0;
-    const scrolls = [];
-    const densityClasses = num =>
-      classNames({
-        active: this.state.densityLevel === num,
-      });
-    // refereneces for table elements
-    let wrapperRef = null;
-    const tableSize = {
-      small: 550,
-      medium: 750,
-      large: 950,
-      xl: 1150,
-    };
-
-    //
-    // EVENT Funcs
-    //
-
-    // Remove scroll class
-    const scrollKiller = (param) => {
-      scrolls.push(param);
-      const scrollLengthTimeout = [...scrolls].length;
-      // scrollLengthTimeout is not mutable and is references from original execution environment (closure)
-      // scrolls is mutable and the length will change with updates
-      setTimeout(() => {
-        if (scrollLengthTimeout === scrolls.length) {
-          this.props.ui.headerRef.classList.remove('risen');
-        }
-      }, 500);
-    };
-    const wheeler = (event) => {
-      if (event.deltaY > 0 && event.deltaX === 0) {
-        this.props.ui.headerRef.classList.add('risen');
-        scrollKiller(scrollTracker++);
-      }
-    };
-
-    const scroller = (event) => {
-      if (event.nativeEvent.target.scrollLeft > 0) {
-        wrapperRef.classList.add('side-scroller');
-      } else {
-        wrapperRef.classList.remove('side-scroller');
-      }
-    };
-
     return (
-      <div className="ReactDataTable-container">
-        <div className="ReactDataTable-density">
-          <i className="material-icons">line_weight</i>
-          <button className={densityClasses(1)} onClick={() => this.setDensity(1, 20)}>
-            Sm
-          </button>
-          <button className={densityClasses(2)} onClick={() => this.setDensity(2, 25)}>
-            Md
-          </button>
-          <button className={densityClasses(3)} onClick={() => this.setDensity(3, 32)}>
-            Lg
-          </button>
-        </div>
-        <div
-          className="ReactDataTable-wrapper"
-          onScroll={scroller}
-          onWheel={wheeler}
-          style={{
-            maxHeight: this.props.config.maxHeight,
-          }}
-        >
-          <div
-            className="ReactDataTable"
-            style={{
-              minWidth: tableSize[this.props.config.minSize],
-            }}
-            ref={(div) => {
-              wrapperRef = div;
-            }}
-          >
-            <ReactDataTableHeader
-              data={this.props.config.headers}
-              columns={this.state.cols}
-              refCallback={this.props.getElementRef}
-            />
-            <ReactDataTableBody
-              data={this.props.config.data}
-              style={this.props.config.rowStyle}
-              numOfCells={this.props.config.headers.length}
-              rowHeight={this.state.rowHeight}
-              gridColumns={this.state.cols}
-              refCallback={this.props.getElementRef}
-            />
-          </div>
-        </div>
-      </div>
+      <Provider store={this.store}>
+        <ReactDataTableContainer config={this.props.config} />
+      </Provider>
     );
   }
 }
 
-export default ReactDataTable;
+export  {ReactDataTable};

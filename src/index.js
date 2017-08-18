@@ -1,15 +1,10 @@
 // @flow
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
 
 // app imports
-import ReactDataTableContainer from 'components/ReactDataTable/ReactDataTableContainer';
+import { ReactDataTable } from 'components/ReactDataTable';
 import { config1, config2 } from './config';
-
-import configureStore from './configureStore';
-
-const store = configureStore();
 
 const styles = {
   fontFamily: 'sans-serif',
@@ -18,17 +13,12 @@ const styles = {
 
 const App = () =>
   (<div style={styles}>
-    <ReactDataTableContainer config={config1} />
-    <ReactDataTableContainer config={config2} />
+    <ReactDataTable config={config1} />
+    <ReactDataTable config={config2} />
   </div>);
 
 function renderWrapper() {
-  render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById('root'),
-  );
+  render(<App />, document.getElementById('root'));
 }
 
 // call render function

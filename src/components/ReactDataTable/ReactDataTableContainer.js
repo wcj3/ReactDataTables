@@ -2,22 +2,28 @@
 import { connect } from 'react-redux';
 import * as type from './actionTypes';
 import generateActionCreator from 'shared/js/actionCreator';
-import ReactDataTable from './index';
+import ReactDataTable from './ReactDataTable';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   ui: { ...state },
+  config: ownProps.config
 });
 
-const getRef = (ref, elementType) => {
-  return generateActionCreator(elementType === 'header' ? type.HEADER_REF : type.BODY_REF, {
+const getRef = ref =>
+  generateActionCreator(type.HEADER_REF, {
     ref,
   });
+
+const changeDensity = (level: number, rowHeight: number) => {
+  return generateActionCreator(type.CHANGE_DENSITY, { level, rowHeight });
 };
 
 const mapDispatchToProps = dispatch => ({
-  getElementRef: (ref, elementType) => {
-    console.log('dispatching');
-    dispatch(getRef(ref, elementType));
+  getElementRef: (ref) => {
+    dispatch(getRef(ref));
+  },
+  changeRowDensity: (level, rowHeight) => {
+    dispatch(changeDensity(level, rowHeight));
   },
 });
 

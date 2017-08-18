@@ -8,8 +8,18 @@ const AppReducer = (state: Object = {}, action: Object = {}) => {
         ...state,
         headerRef: action.ref,
       };
+    case types.CHANGE_DENSITY:
+      return {
+        ...state,
+        densityLevel: action.level,
+        densityRowHeight: action.rowHeight,
+      };
     default:
-    // no expected default cases
+      return {
+        ...state,
+        densityLevel: 1,
+        densityRowHeight: 20,
+      };
   }
 };
 

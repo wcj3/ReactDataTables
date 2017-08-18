@@ -29,7 +29,7 @@ class ReactDataTableHeader extends React.PureComponent {
     this.setState({
       headerStored: true,
     });
-    this.props.refCallback(div, 'header');
+    this.props.refCallback(div);
   }
 
   render() {

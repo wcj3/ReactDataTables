@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import ReactDataTable from './components/ReactDataTable/reducer';
+import ReactDataTable from './reducer';
 
 export default function configureStore(preloadedState) {
   return createStore(

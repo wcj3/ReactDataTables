@@ -1,7 +1,9 @@
 // @flow
 import React from 'react';
 
+import styles from './styles.css';
 import classNames from 'classnames';
+
 
 class ReactDataTableDensity extends React.PureComponent {
   props: {
@@ -14,8 +16,7 @@ class ReactDataTableDensity extends React.PureComponent {
         active: this.props.densityLevel === num,
       });
     return (
-      <div className="ReactDataTable-density">
-        <i className="material-icons">line_weight</i>
+      <div className="ReactDataTableDensity">
         <button className={densityClasses(1)} onClick={() => this.props.setDensity(1, 20)}>
           Sm
         </button>

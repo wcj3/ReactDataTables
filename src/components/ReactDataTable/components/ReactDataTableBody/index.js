@@ -40,7 +40,7 @@ class ReactDataTableBody extends React.PureComponent {
           // define row styles
           const rowClasses = classNames({
             'ReactDataTable-row--zebra': this.props.style === 'zebra',
-            'ReactDataTable-row': this.props.style !== 'zebra',
+            'ReactDataTable-row': true,
           });
           body.push(
             <div

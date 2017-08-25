@@ -9,8 +9,8 @@ class ReactDataTableHeader extends React.PureComponent {
   }
 
   state: {
-    headerStored: boolean
-  }
+    headerStored: boolean,
+  };
 
   shouldComponentUpdate(nextProps: any, nextState: any) {
     if (nextState.headerStored) {
@@ -36,20 +36,24 @@ class ReactDataTableHeader extends React.PureComponent {
     return (
       <div
         className="header"
-        style={{
-          gridTemplateColumns: this.props.columns,
-        }}
         ref={(div) => {
           this.captureRef(div);
         }}
       >
-        {this.props.data.map(item =>
-          (<span className="cell">
-            <span className="data">
-              {item}
-            </span>
-          </span>),
-        )}
+        <div
+          className="ReactDataTable-row"
+          style={{
+            gridTemplateColumns: this.props.columns,
+          }}
+        >
+          {this.props.data.map(item =>
+            (<span className="cell">
+              <span className="data">
+                {item}
+              </span>
+            </span>),
+          )}
+        </div>
       </div>
     );
   }

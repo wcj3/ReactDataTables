@@ -3,7 +3,7 @@
   "description": "Inspired by https://uxdesign.cc/design-better-data-tables-4ecc99d23356",
   "version": "0.0.312",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.babel.js --open",
+    "start": "webpack-dev-server --config ./webpack.config.babel.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
@@ -38,6 +38,7 @@
     "precss": "^2.0.0",
     "react-hot-loader": "next",
     "react-scripts": "^1.0.10",
+    "redux-logger": "^3.0.6",
     "style-loader": "^0.18.2",
     "webpack": "^3.4.1",
     "webpack-dev-server": "^2.6.1"

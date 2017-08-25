@@ -2,43 +2,36 @@
 
 .ReactDataTable {
   position: relative;
+  &-controlsContainer {
+    padding: 5px;
+    border: 1px solid $gray;
+    border-bottom: transparent;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+  }
+  &-controls{
+    height: 0;
+    transition: height .4s;
+    &.is-open{
+      height: 75px;
+      transition: height .4s;
+    }
+  }
   /*styles for the wrapper around RDT*/
   &-wrapper {
     position: relative;
     margin-bottom: 50px;
-    border: 1px solid rgb(218, 218, 218);
+    border: 1px solid $gray;
+    border-top: transparent;
     overflow-x: auto;
-  }
-  /*styles for denstiy settings*/
-  &-density {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 5px;
-    height: 25px;
-    position: sticky;
-    top: 0;
-    z-index: 3;
-    background: white;
-    color: rgba(130, 130, 130, 0.82);
-    border: 1px solid rgb(218, 218, 218);
-    border-bottom: transparent;
-    & > * {
-      margin: 0px 5px;
-    }
-    & > .active  {
-      color: rgb(46, 47, 47);
-    }
   }
   &-row {
     display: grid;
     background: inherit;
-    &--zebra {
-      display: grid;
-
-    }
-    &--zebra:nth-of-type(2n){
-      background: rgb(130, 130, 130);
+    padding: 5px 10px;
+    &--zebra:nth-of-type(2n) {
+      background: $lightgray;
     }
   }
   &-container {
@@ -46,13 +39,14 @@
   }
 }
 
-:global .side-scroller>.header>span:first-of-type, :global .side-scroller>.body>div>span:first-of-type {
+:global .side-scroller > .header > span:first-of-type,
+:global .side-scroller > .body > div > span:first-of-type {
   background: inherit;
   position: sticky;
   left: 0px;
   width: 100px;
   z-index: 2;
-  box-shadow: 0px 0px 5px 0px rgb(120, 120, 120);
+  box-shadow: 0px 0px 5px 0px $darkgray;
   transition: z-index box-shadow .3s;
 }
 
@@ -66,8 +60,10 @@ button {
   background: none;
   font-size: inherit;
   color: inherit;
-  display: block;
   padding: 0;
+  :hover{
+    cursor: pointer;
+  }
   &:disabled:hover {
     cursor: not-allowed;
   }
@@ -83,10 +79,8 @@ button {
 }
 
 :global .header {
-  @extend grid-helper;
   background: #3498db;
   z-index: 3;
-  box-shadow: 0 0 0 0 rgb(221, 221, 221);
   transition: all .1s;
   position: sticky;
   top: 0;
@@ -98,11 +92,12 @@ button {
   background: white;
 }
 
-:global .cell{
+:global .cell {
   padding: 5px;
 }
 
-:global .body .cell, :global .header .cell {
+:global .body .cell,
+:global .header .cell {
   display: flex;
   justify-self: start;
   align-self: center;
@@ -124,7 +119,7 @@ button {
 
 .cell-line::after {
   content: '';
-  border-bottom: 1px solid rgb(221, 221, 221);
+  border-bottom: 1px solid $gray;
   position: absolute;
   width: 100%;
   left: 0;
@@ -132,19 +127,14 @@ button {
   display: inline-block;
 }
 
-.cell-zebra {
-  background: lightgray;
-}
-
 :global .risen {
   z-index: 3;
-  box-shadow: 0px 2px 1px 1px rgb(213, 213, 213);
+  box-shadow: 0px 2px 1px 1px $gray;
 }
 
 .fixed {
   position: fixed;
   background: white;
 }
-
 
 /*Left must match margin position*/

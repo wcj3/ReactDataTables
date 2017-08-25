@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { Provider } from 'react-redux';
 import ReactDataTableContainer from './ReactDataTableContainer';
@@ -10,7 +11,18 @@ class ReactDataTable extends React.PureComponent {
     this.store = configureStore();
   }
 
+  props: {
+    config: {
+      maxHeight: number,
+      rowStyle: string,
+      minSize: string,
+      headers: Array<string>,
+      data: Array<Array<string>>,
+    },
+  };
+
   render() {
+    // Each instance of ReactDataTable will have its own store
     return (
       <Provider store={this.store}>
         <ReactDataTableContainer config={this.props.config} />
@@ -19,4 +31,4 @@ class ReactDataTable extends React.PureComponent {
   }
 }
 
-export  {ReactDataTable};
+export { ReactDataTable };

@@ -85,6 +85,7 @@ class ReactDataTable extends React.PureComponent {
     changeRowDensity: Function,
     changeDataPage: Function,
     dataHasLoaded: Function,
+    changePaginationAmt: Function,
   };
 
   render() {
@@ -140,11 +141,11 @@ class ReactDataTable extends React.PureComponent {
               densityLevel={this.props.ui.densityLevel}
             />
             <ReactDataTablePagination
-              dataAmt={this.props.config.data.length}
-              paginationAmt={this.props.ui.paginationAmt}
+              dataLength={this.props.config.data.length}
               paginationBegin={this.props.ui.paginationBegin}
               paginationEnd={this.props.ui.paginationEnd}
               changePage={this.changePageCtrl}
+              changePaginationAmount={this.props.changePaginationAmt}
             />
           </div>
         </div>

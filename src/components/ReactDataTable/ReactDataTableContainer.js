@@ -14,11 +14,14 @@ const getRef = ref =>
     ref,
   });
 
-const changeDensity = (level: number, rowHeight: number) => generateActionCreator(type.CHANGE_DENSITY, { level, rowHeight });
+const changeDensity = (level: number, rowHeight: number) =>
+  generateActionCreator(type.CHANGE_DENSITY, { level, rowHeight });
 
-const changePage = (nextPage: number) => generateActionCreator(type.CHANGE_PAGE, { nextPage });
+const changePaginationAmt = (amount: number) =>
+  generateActionCreator(type.CHANGE_PAGINATION_AMT, { amount });
+const changePage = (requestedNextPage: number) => generateActionCreator(type.CHANGE_PAGE, { requestedNextPage });
 
-const dataLoaded = (size: number) => generateActionCreator(type.DATA_LOADED, {size});
+const dataLoaded = (size: number) => generateActionCreator(type.DATA_LOADED, { size });
 
 const mapDispatchToProps = dispatch => ({
   getElementRef: (ref) => {
@@ -31,7 +34,10 @@ const mapDispatchToProps = dispatch => ({
     dispatch(changePage(nextPage));
   },
   dataHasLoaded: (size) => {
-    dispatch(dataLoaded(size))
+    dispatch(dataLoaded(size));
+  },
+  changePaginationAmt: (amount) => {
+    dispatch(changePaginationAmt(amount))
   }
 });
 

@@ -3,7 +3,7 @@
 .ReactDataTable {
   position: relative;
   &-controlsContainer {
-    padding: 5px;
+    padding: 5px 20px;
     border: 1px solid $gray;
     border-bottom: transparent;
     display: flex;
@@ -12,10 +12,14 @@
   }
   &-controls{
     height: 0;
+    width: 140px;
     transition: height .4s;
     &.is-open{
       height: 75px;
       transition: height .4s;
+    }
+    & > * {
+      margin-bottom: 5px;
     }
   }
   /*styles for the wrapper around RDT*/

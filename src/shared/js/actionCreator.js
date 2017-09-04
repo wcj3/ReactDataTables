@@ -7,12 +7,8 @@ function generateActionCreator(type: string, ...argNames: any) {
       type,
     };
     argNames.forEach((arg, index) => {
-      if (typeof arg === 'object') {
-        for (const key in arg) {
-          action[key] = arg[key];
-        }
-      } else {
-        action[argNames[index]] = undefined;
+      for (const key in arg) {
+        action[key] = arg[key];
       }
     });
     return action;

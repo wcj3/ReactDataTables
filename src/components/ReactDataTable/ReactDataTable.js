@@ -142,10 +142,11 @@ class ReactDataTable extends React.PureComponent {
             />
             <ReactDataTablePagination
               dataLength={this.props.config.data.length}
-              paginationBegin={this.props.ui.paginationBegin}
-              paginationEnd={this.props.ui.paginationEnd}
+              begin={this.props.ui.paginationBegin}
+              end={this.props.ui.paginationEnd}
+              amount={this.props.ui.paginationAmt}
               changePage={this.changePageCtrl}
-              changePaginationAmount={this.props.changePaginationAmt}
+              changeAmount={this.props.changePaginationAmt}
             />
           </div>
         </div>

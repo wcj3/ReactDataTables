@@ -17,13 +17,13 @@ class ReactDataTableDensity extends React.PureComponent {
       });
     return (
       <div className="ReactDataTableDensity">
-        <button className={densityClasses(1)} onClick={() => this.props.setDensity(1, 20)}>
+        <button className={densityClasses(1)} onClick={() => this.props.setDensity(1, 35)}>
           Aa
         </button>
-        <button className={densityClasses(2)} onClick={() => this.props.setDensity(2, 25)}>
+        <button className={densityClasses(2)} onClick={() => this.props.setDensity(2, 45)}>
           Aa
         </button>
-        <button className={densityClasses(3)} onClick={() => this.props.setDensity(3, 32)}>
+        <button className={densityClasses(3)} onClick={() => this.props.setDensity(3, 55)}>
           Aa
         </button>
       </div>

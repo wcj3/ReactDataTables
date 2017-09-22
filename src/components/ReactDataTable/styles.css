@@ -33,7 +33,7 @@
   &-row {
     display: grid;
     background: inherit;
-    padding: 5px 10px;
+    box-sizing: border-box;
     &--zebra:nth-of-type(2n) {
       background: $lightgray;
     }
@@ -43,14 +43,14 @@
   }
 }
 
-:global .side-scroller > .header > span:first-of-type,
-:global .side-scroller > .body > div > span:first-of-type {
+:global .side-scroller > .header > .ReactDataTable-row > span:first-of-type,
+:global .side-scroller > .body > .ReactDataTable-row > span:first-of-type {
   background: inherit;
   position: sticky;
   left: 0px;
   width: 100px;
   z-index: 2;
-  box-shadow: 0px 0px 5px 0px $darkgray;
+  box-shadow: 0px 2px 10px -2px $darkgray;
   transition: z-index box-shadow .3s;
 }
 
@@ -88,6 +88,9 @@ button {
   transition: all .1s;
   position: sticky;
   top: 0;
+  & .cell {
+    height: 35px;
+  }
 }
 
 :global .body {
@@ -98,22 +101,22 @@ button {
 
 :global .cell {
   padding: 5px;
-}
-
-:global .body .cell,
-:global .header .cell {
   display: flex;
   justify-self: start;
   align-self: center;
-  height: 32px;
   align-items: center;
   white-space: pre;
+  padding: 5px 10px;
+  box-sizing: border-box;
 }
+
 
 :global .body .cell {
   max-width: 140px;
   text-align: left;
   position: relative;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 :global .body .data {

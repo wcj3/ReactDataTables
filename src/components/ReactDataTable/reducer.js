@@ -99,7 +99,7 @@ function AppReducer(state = {}, action) {
       return {
         ...state,
         densityLevel: 1,
-        densityRowHeight: 20,
+        densityRowHeight: 35,
         paginationAmt: 20,
         paginationBegin: 1,
         paginationEnd: 20,

@@ -19,7 +19,7 @@ class ReactDataTableBody extends React.PureComponent {
   //
   addToRow(row: Array<any>, item: any) {
     row.push(
-      <span className={'cell'} style={{ height: this.props.rowHeight }}>
+      <span className={'cell'}>
         <span className="data">
           {item}
         </span>
@@ -48,6 +48,7 @@ class ReactDataTableBody extends React.PureComponent {
               style={{
                 borderBottom: this.props.style === 'line' && '1px solid black',
                 gridTemplateColumns: this.props.gridColumns,
+                height: this.props.rowHeight,
               }}
             >
               {bodyCells}

@@ -109,14 +109,15 @@ class ReactDataTable extends React.PureComponent {
         }
       }, 300);
     };
-    const wheeler = (event) => {
-      if (Math.abs(event.deltaY) > 0 && event.deltaX === 0) {
+    // log to find scroll events
+    const verticalScroll = (event) => {
+      if (Math.abs(event.deltaY) > event.deltaX && Math.abs(event.deltaX) <= 5) {
         this.props.ui.headerRef.classList.add('risen');
         scrollKiller(scrollTracker++);
       }
     };
 
-    const scroller = (event) => {
+    const horizontalScroll = (event) => {
       if (event.nativeEvent.target.scrollLeft > 0) {
         tableRef.classList.add('side-scroller');
       } else {
@@ -152,8 +153,8 @@ class ReactDataTable extends React.PureComponent {
         </div>
         <div
           className="ReactDataTable-wrapper"
-          onScroll={scroller}
-          onWheel={wheeler}
+          onScroll={horizontalScroll}
+          onWheel={verticalScroll}
           style={{
             maxHeight: this.props.config.maxHeight,
           }}

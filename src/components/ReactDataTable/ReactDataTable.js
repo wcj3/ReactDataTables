@@ -88,6 +88,7 @@ class ReactDataTable extends React.PureComponent {
     changePaginationAmt: Function,
   };
 
+  // TODO: move functions in render to methods
   render() {
     let scrollTracker = 0;
     const scrolls = [];
@@ -109,12 +110,18 @@ class ReactDataTable extends React.PureComponent {
         }
       }, 300);
     };
-    // log to find scroll events
-    const verticalScroll = (event) => {
-      if (Math.abs(event.deltaY) > event.deltaX && Math.abs(event.deltaX) <= 5) {
-        this.props.ui.headerRef.classList.add('risen');
-        scrollKiller(scrollTracker++);
+
+    const scrollCtrl = (event: Event) => {
+      if (event.nativeEvent.target.scrollTop > 0 && event.nativeEvent.target.scrollLeft === 0) {
+        verticalScroll(event);
+      } else {
+        horizontalScroll(event);
       }
+    };
+    // log to find scroll events
+    const verticalScroll = () => {
+      this.props.ui.headerRef.classList.add('risen');
+      scrollKiller(scrollTracker++);
     };
 
     const horizontalScroll = (event) => {
@@ -153,8 +160,7 @@ class ReactDataTable extends React.PureComponent {
         </div>
         <div
           className="ReactDataTable-wrapper"
-          onScroll={horizontalScroll}
-          onWheel={verticalScroll}
+          onScroll={event => scrollCtrl(event)}
           style={{
             maxHeight: this.props.config.maxHeight,
           }}
